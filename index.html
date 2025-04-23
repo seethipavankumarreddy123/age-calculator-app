@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/favicon-32x32.png" />
+  <link rel="stylesheet" href="style.css" />
+  <title>Frontend Mentor | Age calculator app</title>
+  <style>
+    .attribution { font-size: 11px; text-align: center; }
+    .attribution a { color: hsl(228, 45%, 44%); }
+    .qq { color: red; font-size: 12px; display: none; }
+  </style>
+</head>
+<body>
+  <section class="uu1">
+    <div class="gg">
+      <p class="gg1">Day</p>
+      <p class="gg2">Month</p>
+      <p class="gg3">Year</p>
+    </div>
+
+    <div class="gg1">
+      <div class="input-group">
+        <input type="number" placeholder="DD" class="day" min="1" max="31" />
+        <p id="day-error"></p>
+      </div>
+
+      <div class="input-group">
+        <input type="number" placeholder="MM" class="month" min="1" max="12" />
+        <p id="month-error"></p>
+      </div>
+
+      <div class="input-group">
+        <input type="number" placeholder="YYYY" class="year" min="1900" max="2030" />
+        <p id="year-error"></p>
+      </div>
+    </div>
+
+    <img src="./assets/images/icon-arrow.svg" class="oo" onclick="calculateAge()" style="cursor:pointer;" />
+
+    <div class="kk"></div>
+
+    <h1 class="lll"><span id="years">--</span> years</h1>
+    <h1 class="lll"><span id="months">--</span> months</h1> 
+    <h1 class="lll"><span id="days">--</span> days</h1>
+    <div class="result" id="result"></div>
+  </section>
+
+  <div class="attribution">
+    Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
+    Coded by <a href="#">Your Name Here</a>.
+  </div>
+
+  <script>
+    const calculateAge = () => {
+      const dayInput = document.getElementsByClassName("day")[0];
+      const monthInput = document.getElementsByClassName("month")[0];
+      const yearInput = document.getElementsByClassName("year")[0];
+
+      const gg1 = document.getElementsByClassName("gg1")[0];
+      const gg2 = document.getElementsByClassName("gg2")[0];
+      const gg3 = document.getElementsByClassName("gg3")[0];
+
+      const dayerror = document.getElementById("day-error");
+      const montherror = document.getElementById("month-error");
+      const yearerror = document.getElementById("year-error");
+      const result = document.getElementById("result");
+      result.textContent = "";
+
+      let dayValid = false;
+      let monthValid = false;
+      let yearValid = false;
+
+      const day = parseInt(dayInput.value);
+      const month = parseInt(monthInput.value);
+      const year = parseInt(yearInput.value);
+
+      // DAY validation
+      if (dayInput.value === "") {
+        dayerror.textContent = "This Field is Required";
+        dayerror.style.color = "red";
+        dayerror.style.display = "block";
+        gg1.style.color = "red";
+      } else if (isNaN(day) || day < 1 || day > 31) {
+        dayerror.textContent = "Please enter correct date";
+        dayerror.style.color = "red";
+        dayerror.style.display = "block";
+        gg1.style.color = "red";
+      } else {
+        dayerror.textContent = "";
+        dayerror.style.display = "none";
+        dayValid = true;
+      }
+
+      // MONTH validation
+      if (monthInput.value === "") {
+        montherror.textContent = "This Field is Required";
+        montherror.style.color = "red";
+        montherror.style.display = "block";
+        gg2.style.color = "red";
+      } else if (isNaN(month) || month < 1 || month > 12) {
+        montherror.textContent = "Please enter correct month";
+        montherror.style.color = "red";
+        montherror.style.display = "block";
+        gg2.style.color = "red";
+      } else {
+        montherror.textContent = "";
+        montherror.style.display = "none";
+        monthValid = true;
+      }
+
+      // YEAR validation
+      if (yearInput.value === "") {
+        yearerror.textContent = "This Field is Required";
+        yearerror.style.color = "red";
+        yearerror.style.display = "block";
+        gg3.style.color = "red";
+      } else if (isNaN(year) || year < 1900 || year > 2026) {
+        yearerror.textContent = "Please enter correct year";
+        yearerror.style.color = "red";
+        yearerror.style.display = "block";
+        gg3.style.color = "red";
+      } else {
+        yearerror.textContent = "";
+        yearerror.style.display = "none";
+        yearValid = true;
+      }
+
+      if (!(dayValid && monthValid && yearValid)) return;
+
+      const isValidDate = (d, m, y) => {
+        const testDate = new Date(y, m - 1, d);
+        return (
+          testDate.getFullYear() === y &&
+          testDate.getMonth() === m - 1 &&
+          testDate.getDate() === d
+        );
+      };
+
+      if (!isValidDate(day, month, year)) {
+        dayerror.textContent = "Please enter a valid calendar date.";
+        dayerror.style.color = "red";
+        dayerror.style.display = "block";
+        gg1.style.color = "red";
+        result.textContent = "";
+        return;
+      }
+
+      const dob = new Date(year, month - 1, day);
+      const today = new Date();
+
+      if (today < dob) {
+        result.textContent = "Birthdate cannot be in the future.";
+        result.style.color = "red";
+        return;
+      }
+
+      let years = today.getFullYear() - dob.getFullYear();
+      let months = today.getMonth() - dob.getMonth();
+      let days = today.getDate() - dob.getDate();
+
+      if (days < 0) {
+        months--;
+        const prevMonth = new Date(today.getFullYear(), today.getMonth(), 0);
+        days += prevMonth.getDate();
+      }
+
+      if (months < 0) {
+        years--;
+        months += 12;
+      }
+
+      document.getElementById("years").textContent = years;
+      document.getElementById("months").textContent = months;
+      document.getElementById("days").textContent = days;
+    };
+  </script>
+</body>
+</html>
+
+
+
+
+

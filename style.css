@@ -1,0 +1,169 @@
+/* Reset and base styles */
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  background-color: #f5f5f5;
+  font-family: Arial, sans-serif;
+  color: hsl(0, 0%, 0%);
+}
+
+/* Main container */
+.uu1 {
+  background-color: hsl(0, 100%, 100%);
+  width: 500px;
+  max-width: 90%;
+  height: auto;
+  padding: 30px 20px;
+  box-shadow: 2px 2px 1px 1px hsl(0, 0%, 86%);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 5px 5px 130px 5px;
+}
+
+/* Labels row */
+.gg {
+  display: flex;
+  justify-content: space-evenly;
+  margin-bottom: 5px;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+/* Inputs row */
+.gg1 {
+  display: flex;
+  justify-content: space-evenly;
+  margin-bottom: 10px;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+/* Input + error group */
+.input-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 10px;
+}
+
+/* Input styles */
+.uu, .uu2, .uu3 {
+  width: 70px;
+  height: 35px;
+  font-size: 16px;
+  text-align: center;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+}
+
+/* Error message */
+.input-group p {
+  font-size: 0.7rem;
+  color: red;
+  margin: 4px 0 10px 0;
+  display: none;
+}
+
+
+
+/* Arrow icon */
+.oo {
+  background-color: hsl(259, 100%, 65%);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+ 
+  display: block;
+  padding: 5px;
+  cursor: pointer;
+  margin-left: 420px;
+}
+
+/* Horizontal line */
+.kk {
+  border-bottom: 1px solid hsl(0, 0%, 86%);
+  width: 75%;
+  margin: 10px auto -10px auto;
+}
+
+/* Result text */
+.lll {
+  font-size: 40px;
+  margin-left: 30px;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', sans-serif;
+}
+
+span {
+  color: hsl(259, 100%, 65%);
+}
+.day{
+ height: 30px;
+ width: 70px;
+}
+.month{
+  height: 30px;
+  width: 70px;
+ }
+ .year{
+  height: 30px;
+  width: 70px;
+ }
+.day:hover{
+  border-color:  hsl(259, 100%, 65%);
+}
+.month:hover{
+  border-color:  hsl(259, 100%, 65%);
+}
+.year:hover{
+  border-color:  hsl(259, 100%, 65%);
+}
+.oo:hover{
+  background-color: black;
+}
+/* 🌐 Mobile responsive */
+@media (max-width: 600px) {
+  .uu1 {
+    width: 95%;
+    padding: 20px 15px;
+    border-radius: 10px 10px 100px 10px;
+  }
+
+  .gg, .gg1 {
+    
+    align-items: center;
+  }
+
+  .input-group {
+    margin: 10px 0;
+  }
+
+  .uu, .uu2, .uu3 {
+    width: 100%;
+    max-width: 100px;
+  }
+
+  .lll {
+    font-size: 28px;
+    text-align: center;
+    margin-left: 0;
+  }
+
+  .kk {
+    width: 90%;
+  }
+  .oo {
+    background-color: hsl(259, 100%, 65%);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+   
+    display: block;
+    padding: 5px;
+    cursor: pointer;
+    margin-left: 220px;
+  }
+}
+
